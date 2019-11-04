@@ -32,7 +32,7 @@
                             <span class="lot__amount">Стартовая цена</span>
                                <span class="lot__cost"><?php print(sum_format(strip_tags($lot["price"]))); ?></span>                            
                         </div>                        
-                        <div class="lot__timer timer <?php if($range[0] == '0') print "timer--finishing"; ?>">                           
+                        <div class="lot__timer timer <?php if($range[0] == '00') print "timer--finishing"; ?>">                           
                             <?php print $range[0] . ":" . $range[1]; ?>
                         </div>
                     </div>
