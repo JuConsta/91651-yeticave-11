@@ -21,6 +21,8 @@ function get_date_range($expiration_date) {
     else {
         $range_hours = floor($diff/3600); //часов
         $range_minutes = ceil($diff%3600 / 60); //минут
+        $range_hours = str_pad($range_hours, 2, "0", STR_PAD_LEFT);
+        $range_minutes = str_pad($range_minutes, 2, "0", STR_PAD_LEFT);
         return [$range_hours, $range_minutes];
     }
 }
