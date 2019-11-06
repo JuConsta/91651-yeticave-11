@@ -1,12 +1,44 @@
 USE yeticave;
 /* Заполнение таблицы "КАТЕГОРИИ" */
 /* Доски и лыжи (boards), Крепления (attachment), Ботинки (boots), Одежда (clothing), Инструменты (tools), Разное (other) */
+/* Первый вариант: 
 INSERT INTO categories SET name = 'Доски и лыжи', char_code = 'boards';
 INSERT INTO categories SET name = 'Крепления', char_code = 'attachment';
 INSERT INTO categories SET name = 'Ботинки', char_code = 'boots';
 INSERT INTO categories SET name = 'Одежда', char_code = 'clothing';
 INSERT INTO categories SET name = 'Инструменты', char_code = 'tools';
 INSERT INTO categories SET name = 'Разное', char_code = 'other';
+*/ 
+/* Второй вариант: */
+INSERT INTO categories (
+    name,
+    char_code
+)
+VALUES 
+    (
+        'Доски и лыжи', 
+        'boards'
+    ),
+    (
+        'Крепления',
+        'attachment'
+    ),
+    (
+        'Ботинки',
+        'boots'
+    ),
+    (
+        'Одежда',
+        'clothing'    
+    ),
+    (
+        'Инструменты',
+        'tools'
+    ),
+    (
+        'Разное',
+        'other'
+    );
     
 /* Заполнение таблицы "ПОЛЬЗОВАТЕЛИ" */
 INSERT INTO users 
@@ -126,7 +158,7 @@ SELECT * FROM categories;
 
 /* получить самые новые, открытые лоты. Каждый лот должен включать название, стартовую цену, ссылку на изображение, цену?, название категории; */
 SELECT l.name, start_price, image_url, c.name FROM lots l 
-	JOIN categories c ON (c.id = l.category_id) WHERE dt_exp > NOW() ORDER BY l.dt_create;
+	JOIN categories c ON (c.id = l.category_id) WHERE dt_exp > NOW() ORDER BY l.dt_create DESC;
 
 /* показать лот по его id. Получите также название категории, к которой принадлежит лот; */
 SELECT lots.*, c.name FROM lots JOIN categories c ON (c.id = category_id) WHERE lots.id = 4;
