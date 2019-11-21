@@ -1,9 +1,6 @@
-<?php
-require_once('./helpers.php');
-require_once('./functions.php');
-require_once('./data.php');
+<?php require_once('./init.php');
+//var_dump($con);
 
-//$page_content = include_template('main.php', ['categories' => $categories, 'lots' => $lots]);
 $page_content = include_template('main.php', ['categories' => $categories]);
 
 $layout_content = include_template('layout.php', [
