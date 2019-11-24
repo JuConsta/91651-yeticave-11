@@ -1,13 +1,13 @@
 <?php 
+require_once('./config.php');
+
 date_default_timezone_set('Europe/Moscow'); //относится к конфигурации, наверно, но пока сюда вынесла
 $user_name = 'Юлия'; // укажите здесь ваше имя
 
 $categories = [];
 
-$con = mysqli_connect("localhost", "root", "", "yeticave");
 if ($con) {
-    mysqli_set_charset($con, "utf8"); //принудительная установка кодировки
-        
+    
     /* Получение массива с категориями */
     $sql_cat = "SELECT * FROM categories";
     $sql_res = mysqli_query($con, $sql_cat);

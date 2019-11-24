@@ -1,13 +1,8 @@
-<?php
-require_once('./helpers.php');
-require_once('./functions.php');
-require_once('./data.php');
+<?php require_once('./init.php');
 
 $lot = [];
 
-$con = mysqli_connect("localhost", "root", "", "yeticave");
-if ($con) {
-     mysqli_set_charset($con, "utf8");    
+if ($con) { 
         
         if (isset($_GET['id'])) { 
             
@@ -39,7 +34,6 @@ else {
     //ошибка соединения с БД - куда-то вывести, например:
     print ("Ошибка соединения с БД: " . mysqli_connect_error());
 }
- 
 
 $page_content = include_template('lot.php', ['categories' => $categories, 'lot' => $lot[0]]);
 
@@ -51,4 +45,3 @@ $layout_content = include_template('layout.php', [
 ]);
 
 print $layout_content;
-       
