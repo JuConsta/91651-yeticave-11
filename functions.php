@@ -80,8 +80,6 @@ function validateCategory($cat_id, $ids) {
         }
 }
 
-// ФУНКЦИИ НА БУДУЩЕЕ
-
 // Проверка на email
 function validateEmail($value) {
     if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {

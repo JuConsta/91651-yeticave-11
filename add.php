@@ -51,18 +51,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES['lot-img']['tmp_name'], $file_path . $file_name);
         
         $sql_newlot = "INSERT INTO lots SET         
-        name = '". $_POST["lot-name"] ."',
-        description = '". $_POST["message"] ."',
-        image_url = '". $uploads_dir . $file_name ."',
-        start_price = ". $_POST["lot-rate"] .",
-        bid_step = ". $_POST["lot-step"] .",
-        dt_exp = '". $_POST["lot-date"] ."',
-        category_id = ". $_POST["category"] .",
-        user_id = 1;";    
+                        name = '". $_POST["lot-name"] ."',
+                        description = '". $_POST["message"] ."',
+                        image_url = '". $uploads_dir . $file_name ."',
+                        start_price = ". $_POST["lot-rate"] .",
+                        bid_step = ". $_POST["lot-step"] .",
+                        dt_exp = '". $_POST["lot-date"] ."',
+                        category_id = ". $_POST["category"] .",
+                        user_id = 1;";    
         
-        //print($sql_newlot); //отладка
-        
-        if ($con) {        
+     if ($con) {        
             $sql_res = mysqli_query($con, $sql_newlot);
             if ($sql_res) {                      
                 // перенаправляем на страницу с новым лотом
