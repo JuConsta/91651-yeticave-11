@@ -4,28 +4,20 @@ $lot = [];
 
 if ($con) { 
         
-        if (isset($_GET['id'])) { 
-            
-        $sql_lot = "SELECT l.*, c.name AS cat_name FROM lots l JOIN categories c ON (c.id = l.category_id) WHERE l.id = " . $_GET['id'];
-            
+    if (isset($_GET['id'])) { 
+
+    $sql_lot = "SELECT l.*, c.name AS cat_name FROM lots l JOIN categories c ON (c.id = l.category_id) WHERE l.id = " . $_GET['id'];
+
         $sql_res = mysqli_query($con, $sql_lot);
+
         if ($sql_res) {            
-            //обработка результата
             $lot = mysqli_fetch_all($sql_res, MYSQLI_ASSOC);
-            /*echo "<pre>";
-            var_dump($lot);
-            echo "</pre>";*/
-            //var_dump($sql_res);
-        }
-        else {
+        } else {
             //ошибка sql-запроса
             $error = mysqli_error($con);
-            //куда-то вывести $error, например:
             print ("Ошибка MySQL: " . $error);
-            //var_dump($sql_res);
         }
-    }
-    else {
+    } else {
         //в строке запроса нет параметра "id"
         http_response_code(404);
     }
