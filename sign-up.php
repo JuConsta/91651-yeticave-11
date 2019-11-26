@@ -4,8 +4,6 @@ require_once('./init.php');
 
 $required_fields = ['email', 'password', 'name', 'message']; // Обязательные поля
 $errors = []; // Ошибки валидации
-$sql;
-$sql_res;
 
 //Проверить, что отправлена форма.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
