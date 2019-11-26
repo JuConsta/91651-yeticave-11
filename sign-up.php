@@ -35,12 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Если ошибок нет, то сохранить данные формы в таблице пользователей.
             //Для хранения пароля в БД его предварительно нужно обработать встроенной функцией password_hash.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $name = mysqli_real_escape_string($con, $_POST['name']);
+            $message = mysqli_real_escape_string($con, $_POST['message']);
 
             $sql = "INSERT INTO users SET
-                    email = '" . $_POST['email'] . "',
+                    email = '" . $email . "',
                     pwd = '" . $password . "',
-                    name = '" . $_POST["name"] . "',
-                    contact = '" . $_POST["message"] . "';";
+                    name = '" . $name . "',
+                    contact = '" . $message . "';";
 
             $sql_res = mysqli_query($con, $sql);
         }            
