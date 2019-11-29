@@ -2,11 +2,9 @@
 
 $lot = [];
 
-if ($con) { 
-        
+if ($con) {        
     if (isset($_GET['id'])) { 
-
-    $sql_lot = "SELECT l.*, c.name AS cat_name FROM lots l JOIN categories c ON (c.id = l.category_id) WHERE l.id = " . $_GET['id'];
+        $sql_lot = "SELECT l.*, c.name AS cat_name FROM lots l JOIN categories c ON (c.id = l.category_id) WHERE l.id = " . $_GET['id'];
 
         $sql_res = mysqli_query($con, $sql_lot);
 
