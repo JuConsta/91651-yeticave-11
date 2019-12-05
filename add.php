@@ -1,7 +1,11 @@
 <?php 
 require_once('./init.php');
 
-if (isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['user_name'])) {
+    http_response_code(403);
+    exit();
+}
+
     $user_id = $_SESSION['user_id'];
     $cat_ids = array_column($categories, 'id');
     $required_fields = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date']; // Обязательные поля, кроме файлов
@@ -86,7 +90,3 @@ if (isset($_SESSION['user_name'])) {
     ]);
 
     print $layout_content;
-    
-} else {
-    http_response_code(403);
-}
