@@ -43,3 +43,6 @@ CREATE TABLE bids (
 
 CREATE INDEX name_description ON lots (name, description);
 CREATE INDEX lot_c ON lots (category_id);
+
+# В schema.sql добавьте SQL инструкцию на создание полнотекстового индекса для полей «название» и «описание» в таблице лотов.
+CREATE FULLTEXT INDEX name_descr ON lots (name, description);
