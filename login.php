@@ -4,6 +4,7 @@ require_once('./init.php');
 
 if (isset($_SESSION['user_name'])) {
     http_response_code(403);
+    header("Location: /");    
 } else {
     $required_fields = ['email', 'password'];
     $errors = [];
@@ -26,11 +27,10 @@ if (isset($_SESSION['user_name'])) {
             $sql = "SELECT * FROM users WHERE email = '$email'";
             $sql_res = mysqli_query($con, $sql);
         }
-
-        if (empty($errors) && $sql_res) {
+        
+        if (empty($errors) && $sql_res->num_rows > 0) {
             $users = mysqli_fetch_all($sql_res, MYSQLI_ASSOC);
             $user = $users[0];
-            //var_dump($user);
 
             if (password_verify($_POST['password'], $user['pwd'])) {
 
@@ -38,12 +38,13 @@ if (isset($_SESSION['user_name'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = strip_tags($user['name']);
                 $_SESSION['user_email'] = strip_tags($user['email']);
-                //var_dump($_SESSION);
                 header("Location: /");
 
             } else {
                 $errors['password'] = 'Вы ввели неверный пароль';
             }
+        } elseif ($sql_res->num_rows < 1) {
+            $errors['email'] = 'Пользователя с таким email не существует.';
         }
     }
 

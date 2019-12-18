@@ -2,6 +2,11 @@
 
 require_once('./init.php');
 
+if (isset($_SESSION['user_name'])) {
+    http_response_code(403);
+    exit();
+}
+
 $required_fields = ['email', 'password', 'name', 'message']; // Обязательные поля
 $errors = []; // Ошибки валидации
 
